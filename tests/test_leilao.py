@@ -6,10 +6,10 @@ class TestLeilao(TestCase):
 
 
     def setUp(self):
-        self.paulo = Usuario('Paulo')
-        self.gui = Usuario('Gui')
-        self.yuri = Usuario('yuri')
-        self.vini = Usuario('Vini')
+        self.paulo = Usuario('Paulo', 500.0)
+        self.gui = Usuario('Gui', 500.0)
+        self.yuri = Usuario('yuri', 500.0)
+        self.vini = Usuario('Vini', 500.0)
         self.lance_do_paulo = Lance(self.paulo, 1500.20)
         self.lance_do_gui = Lance(self.gui, 150.0)
         self.lance_do_yuri = Lance(self.yuri, 100.0)
@@ -28,7 +28,7 @@ class TestLeilao(TestCase):
 
     def test_nao_deve_permitir_propor_um_lance_em_ordem_decrescente(self):
         with self.assertRaises(ValueError):
-            yuri = Usuario('Yuri')
+            yuri = Usuario('Yuri', 500.0)
             lance_do_yuri = Lance(yuri, 100.0)
 
             self.leilao.propoe(self.lance_do_gui)
@@ -66,7 +66,7 @@ class TestLeilao(TestCase):
         self.assertEqual(1, quantidade_de_lances_recebido)
 
     def test_deve_permitir_propor_um_lance_caso_o_ultimo_usuario_seja_diferente(self):
-        yuri = Usuario('Yuri')
+        yuri = Usuario('Yuri', 500.0)
         lance_do_yuri =Lance(yuri,200)
 
         self.leilao.propoe(self.lance_do_gui)
